@@ -1,4 +1,4 @@
-package nz.com.identity.application.controller.authentication;
+package nz.com.identity.application.authentication.controller;
 
 import nz.com.identity.domain.user.User;
 import nz.com.identity.domain.authorization.service.UserAuthorizationService;

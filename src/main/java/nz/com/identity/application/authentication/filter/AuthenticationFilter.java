@@ -1,4 +1,4 @@
-package nz.com.identity.domain.authentication.filter;
+package nz.com.identity.application.authentication.filter;
 
 import org.springframework.stereotype.Component;
 

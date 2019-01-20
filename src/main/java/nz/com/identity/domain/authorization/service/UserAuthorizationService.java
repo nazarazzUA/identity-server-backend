@@ -28,7 +28,6 @@ public class UserAuthorizationService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-
     public User registerNewAccount(UserCredentialsRequest registrationRequest) throws Exception
     {
         if (emailExists(registrationRequest.getUsername())) {
