@@ -1,6 +1,7 @@
 package nz.com.identity.domain.client.requests;
 
 import nz.com.identity.domain.common.requests.BaseRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
@@ -18,21 +19,37 @@ public class ClientRequest extends BaseRequest {
     @Max(ONE_YEAR_IN_SECOND)
     protected int refreshTokenTtl;
 
+    @NotNull
+    protected String clientType;
+
     protected String allowedDomain;
     protected String allowedRedirectUrls;
     protected String allowedClientIps;
 
     public ClientRequest() { }
 
-    public ClientRequest(@NotNull String clientId, @NotNull String clientIp, @NotNull String userAgent, String clientSecret, @NotNull @Size(min = 6, max = 16) String clientId1, @NotNull @Size(min = 24, max = 512) String clientSecret1, @NotNull @Max(ONE_YEAR_IN_SECOND) int accessTokenTtl, @NotNull @Max(ONE_YEAR_IN_SECOND) int refreshTokenTtl, String allowedDomain, String allowedRedirectUrls, String allowedClientIps) {
-        super(clientId, clientIp, userAgent, clientSecret);
-        this.clientId = clientId1;
-        this.clientSecret = clientSecret1;
+    public ClientRequest(
+            @NotNull String clientId,
+            @NotNull String clientType,
+            @NotNull String clientIp,
+            @NotNull String userAgent,
+            @NotNull @Size(min = 24, max = 512) @NotNull @Max(ONE_YEAR_IN_SECOND) int accessTokenTtl,
+            @NotNull @Max(ONE_YEAR_IN_SECOND) int refreshTokenTtl,
+            String allowedDomain,
+            String allowedRedirectUrls,
+            String allowedClientIps
+    ) {
+        super(clientId, clientIp, userAgent);
+        this.clientType = clientType;
         this.accessTokenTtl = accessTokenTtl;
         this.refreshTokenTtl = refreshTokenTtl;
         this.allowedDomain = allowedDomain;
         this.allowedRedirectUrls = allowedRedirectUrls;
         this.allowedClientIps = allowedClientIps;
+    }
+
+    public String getClientType() {
+        return clientType;
     }
 
     public int getAccessTokenTtl() {

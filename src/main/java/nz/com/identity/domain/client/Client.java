@@ -8,19 +8,24 @@ import javax.persistence.Entity;
 @Entity
 public class Client extends BaseEntity {
 
-    @Column
+    public final static String PUBLIC = "public";
+    public final static String CONFIDENTIAL = "confidential";
+
+    @Column(nullable = false)
     protected String clientId;
-    @Column
+    @Column()
     protected String clientSecret;
+    @Column(nullable = false)
+    protected String clientType;
     @Column
     protected String allowedDomain;
     @Column
     protected String allowedRedirectUrls;
     @Column
     protected String allowedClientIps;
-    @Column
+    @Column(nullable = false)
     protected int accessTokenTtl;
-    @Column
+    @Column(nullable = false)
     protected int refreshTokenTtl;
 
     public Client() { }
@@ -28,6 +33,7 @@ public class Client extends BaseEntity {
     public Client(
         String clientId,
         String clientSecret,
+        String clientType,
         String allowedDomain,
         String allowedRedirectUrls,
         String allowedClientIps,
@@ -35,6 +41,7 @@ public class Client extends BaseEntity {
         int refreshTokenTtl
     ) {
         this.clientId = clientId;
+        this.clientType = clientType;
         this.clientSecret = clientSecret;
         this.allowedDomain = allowedDomain;
         this.allowedRedirectUrls = allowedRedirectUrls;
