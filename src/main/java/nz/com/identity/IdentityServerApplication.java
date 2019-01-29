@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.websocket.servlet.WebSocketServlet
 		WebSocketReactiveAutoConfiguration.class, WebSocketServletAutoConfiguration.class})
 public class IdentityServerApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		SpringApplication.run(IdentityServerApplication.class, args);
 	}
 }

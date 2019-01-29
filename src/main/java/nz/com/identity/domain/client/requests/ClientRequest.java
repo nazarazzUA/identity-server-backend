@@ -33,7 +33,7 @@ public class ClientRequest extends BaseRequest {
             @NotNull String clientType,
             @NotNull String clientIp,
             @NotNull String userAgent,
-            @NotNull @Size(min = 24, max = 512) @NotNull @Max(ONE_YEAR_IN_SECOND) int accessTokenTtl,
+            @NotNull @Max(ONE_YEAR_IN_SECOND) int accessTokenTtl,
             @NotNull @Max(ONE_YEAR_IN_SECOND) int refreshTokenTtl,
             String allowedDomain,
             String allowedRedirectUrls,

@@ -1,5 +1,6 @@
 package nz.com.identity.domain.client;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import nz.com.identity.domain.common.BaseEntity;
 
 import javax.persistence.Column;
@@ -14,7 +15,9 @@ public class Client extends BaseEntity {
     @Column(nullable = false)
     protected String clientId;
     @Column()
+    @JsonIgnore
     protected String clientSecret;
+
     @Column(nullable = false)
     protected String clientType;
     @Column
@@ -76,5 +79,9 @@ public class Client extends BaseEntity {
 
     public int getRefreshTokenTtl() {
         return refreshTokenTtl;
+    }
+
+    public String getClientType() {
+        return clientType;
     }
 }

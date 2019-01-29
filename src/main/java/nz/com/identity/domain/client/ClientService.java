@@ -1,6 +1,10 @@
 package nz.com.identity.domain.client;
 
+import nz.com.identity.domain.client.exception.ClientNotFoundException;
 import nz.com.identity.domain.client.requests.ClientRequest;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
@@ -14,7 +18,15 @@ public class ClientService {
 
     private ClientRepository repository;
 
-    public Client create(ClientRequest request) throws NoSuchProviderException, NoSuchAlgorithmException {
+    public ClientService(ClientRepository repository) {
+        this.repository = repository;
+    }
+
+    public Client getById(Long id) throws ClientNotFoundException {
+        return repository.findById(id).orElseThrow(ClientNotFoundException::new);
+    }
+
+    public Client create(ClientRequest request) throws Exception {
 
         String secretKey = null;
 
@@ -38,7 +50,11 @@ public class ClientService {
         return client;
     }
 
-    private String getRandomKey() throws NoSuchAlgorithmException {
+    public Page<Client> all() {
+        return (Page<Client>) repository.findAll(PageRequest.of(0,  10));
+    }
+
+    private String getRandomKey() throws Exception {
         KeyGenerator keyGen = KeyGenerator.getInstance("AES");
         keyGen.init(256);
         SecretKey secretKey = keyGen.generateKey();
