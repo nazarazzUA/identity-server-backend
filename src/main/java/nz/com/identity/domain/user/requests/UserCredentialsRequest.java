@@ -8,22 +8,22 @@ public class UserCredentialsRequest extends BaseRequest {
     @NotNull
     @Email
     @Size(min = 2, max = 52)
-    private String username;
+    private String email;
 
     @NotNull
     @Size(min = 6, max = 16)
     private String password;
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String username) {
+        this.email = username;
     }
 
     public void setPassword(String password) {

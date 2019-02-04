@@ -2,16 +2,14 @@ package nz.com.identity.domain.client;
 
 import nz.com.identity.domain.client.exception.ClientNotFoundException;
 import nz.com.identity.domain.client.requests.ClientRequest;
-import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.util.Arrays;
+import java.util.Date;
 
 @Service
 public class ClientService {
@@ -52,6 +50,28 @@ public class ClientService {
 
     public Page<Client> all() {
         return (Page<Client>) repository.findAll(PageRequest.of(0,  10));
+    }
+
+    public Client delete(Long id) throws ClientNotFoundException {
+
+        Client client = repository.findById(id).orElseThrow(ClientNotFoundException::new);
+        repository.deleteById(id);
+
+        return client;
+    }
+
+    public Client update(Long id, ClientRequest request) throws ClientNotFoundException {
+
+        return repository.findById(id).map((Client element) -> {
+            element.setAccessTokenTtl(request.getAccessTokenTtl());
+            element.setRefreshTokenTtl(request.getRefreshTokenTtl());
+            element.setAllowedClientIps(request.getAllowedClientIps());
+            element.setAllowedDomain(request.getAllowedDomain());
+            element.setAllowedRedirectUrls(request.getAllowedRedirectUrls());
+            element.setUpdatedAt(new Date());
+
+            return element;
+        }).orElseThrow(ClientNotFoundException::new);
     }
 
     private String getRandomKey() throws Exception {

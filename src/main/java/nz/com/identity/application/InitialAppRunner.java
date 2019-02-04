@@ -50,7 +50,7 @@ public class InitialAppRunner implements CommandLineRunner {
             ClientRequest request = new ClientRequest(
                     faker.internet().uuid(),
                     Client.PUBLIC,
-                    faker.internet().uuid(),
+                    faker.internet().ipV4Address(),
                     "Cli application",
                     result,
                     86400,

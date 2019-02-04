@@ -7,9 +7,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Collection;
 
 @Entity
+@Table(name="users")
 public class User extends BaseEntity implements UserDetails {
 
     @Column(nullable = false, unique = true)

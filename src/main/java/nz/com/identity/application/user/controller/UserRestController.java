@@ -39,8 +39,7 @@ public class UserRestController {
     }
 
     @PutMapping("/users/{id}")
-    User update(@PathVariable Long id, UserCredentialsRequest request) throws UserNotFoundException {
+    User update(@PathVariable Long id, @RequestBody UserCredentialsRequest request) throws UserNotFoundException {
         return this.userService.update(id, request);
     }
-
 }

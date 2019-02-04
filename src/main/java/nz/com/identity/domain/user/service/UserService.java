@@ -51,14 +51,13 @@ public class UserService {
         return user;
     }
 
-
     public User update(Long id, UserCredentialsRequest request) throws UserNotFoundException {
 
         User user = userRepository
                 .findById(id)
                 .map((User element) -> {
                     element.setPassword(request.getPassword());
-                    element.setEmail(request.getUsername());
+                    element.setEmail(request.getEmail());
                     return element;
                 }).orElseThrow(UserNotFoundException::new);
 

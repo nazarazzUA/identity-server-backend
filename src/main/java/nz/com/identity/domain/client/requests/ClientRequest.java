@@ -1,11 +1,8 @@
 package nz.com.identity.domain.client.requests;
 
 import nz.com.identity.domain.common.requests.BaseRequest;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 public class ClientRequest extends BaseRequest {
 

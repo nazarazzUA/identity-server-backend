@@ -30,13 +30,13 @@ public class UserAuthorizationService implements UserDetailsService {
 
     public User registerNewAccount(UserCredentialsRequest registrationRequest) throws Exception
     {
-        if (emailExists(registrationRequest.getUsername())) {
+        if (emailExists(registrationRequest.getEmail())) {
             throw new Exception("Email exists");
         }
 
         User registerUser = new User();
 
-        registerUser.setEmail(registrationRequest.getUsername());
+        registerUser.setEmail(registrationRequest.getEmail());
         registerUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
 
         this.userRepository.save(registerUser);

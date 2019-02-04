@@ -53,6 +53,30 @@ public class Client extends BaseEntity {
         this.refreshTokenTtl = refreshTokenTtl;
     }
 
+    public void setClientType(String clientType) {
+        this.clientType = clientType;
+    }
+
+    public void setAllowedDomain(String allowedDomain) {
+        this.allowedDomain = allowedDomain;
+    }
+
+    public void setAllowedRedirectUrls(String allowedRedirectUrls) {
+        this.allowedRedirectUrls = allowedRedirectUrls;
+    }
+
+    public void setAllowedClientIps(String allowedClientIps) {
+        this.allowedClientIps = allowedClientIps;
+    }
+
+    public void setAccessTokenTtl(int accessTokenTtl) {
+        this.accessTokenTtl = accessTokenTtl;
+    }
+
+    public void setRefreshTokenTtl(int refreshTokenTtl) {
+        this.refreshTokenTtl = refreshTokenTtl;
+    }
+
     public String getClientId() {
         return clientId;
     }
